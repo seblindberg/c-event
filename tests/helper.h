@@ -38,15 +38,6 @@ event_queue_t *
 event_source_t *
   helper__event_source(void);
 
-// event_listener_t *
-//   helper__event_listener(void);
-//
-// event_t *
-//   helper__event(event__value_t value);
-//
-// event_source_t *
-//   helper__event_source(void);
-
 
 /* Macros ----------------------------------------+--------+----------------- */
 

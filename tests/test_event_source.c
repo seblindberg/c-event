@@ -2,7 +2,7 @@
  * Run with arguments
  *   -I../include -I../ext/list/include ../ext/list/lib/s_list_item.c ../ext/list/lib/s_list.c ../lib/event/event.c ../lib/event/event_listener.c ../lib/event/event_debugger.c ../lib/event/event_source.c
  */
-//#define NDEBUG /* This should remove event_debugger  */
+
 #include <compiler.h>
 
 #include <event/event.h>
@@ -11,30 +11,6 @@
 #include <event/event_source.h>
 
 #include "helper.h"
-
-// static uint_fast8_t listening_object;
-// static void *callback_listener;
-// static event_t callback_event;
-//
-// void helper__event_listener_callback(void *listener, event_t *event)
-// {
-//   callback_listener = listener;
-//   memcpy(&callback_event, event, sizeof(event_t));
-//
-//   event__inspect(event);
-// }
-//
-// event_listener_t *helper__event_listener()
-// {
-//   static event_listener_t event_listener;
-//
-//   event_listener__ctor(&event_listener, &listening_object, helper__event_listener_callback);
-//
-//   callback_listener = NULL;
-//   event__ctor(&callback_event, NULL, 0);
-//
-//   return &event_listener;
-// }
 
 void test__create(void)
 {
