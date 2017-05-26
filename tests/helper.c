@@ -1,22 +1,22 @@
 #include "helper.h"
 
-/* Macros ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Macros ------------------------------------------------------------------- */
 
 
 
-/* Private Functions –––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Private Functions -------------------------------------------------------- */
 
 void
   event_listener_callback(void *listener, event_t *event);
 
 
-/* Global Variables ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Global Variables --------------------------------------------------------- */
 
 static event_t       event_queue_buffer[4];
 static event_t       received_event;
 static void         *received_listener;
 
-/* Function Definitions ––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Function Definitions ----------------------------------------------------- */
 
 
 event_listener_t *helper__event_listener()
