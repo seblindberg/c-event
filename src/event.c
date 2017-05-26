@@ -26,7 +26,7 @@ void event__ctor(event_t *event, event__source_t source, event__value_t value)
 }
 
 #ifndef NDEBUG
-void event__inspect(event_t *event)
+void event__inspect(event_t const *event)
 {
   if (event == NULL) {
     puts("Event: NULL");

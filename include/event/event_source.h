@@ -66,13 +66,13 @@ static inline bool_t
   event_source__detach(event_source_t *es, event_listener_t *el);
 
 static inline event_listener_t *
-  event_source__first_listener(event_source_t *es);
+  event_source__first_listener(event_source_t const *es);
 
 /* Dispatch an event from this event source.
  */
  
 void
-  event_source__dispatch(event_source_t *es, event__value_t value);
+  event_source__dispatch(event_source_t const *es, event__value_t value);
 
 
 /* Inline Function Definitions ---------------------------------------------- */
@@ -109,7 +109,7 @@ size_t event_source__listeners(event_source_t const *es)
   return s_list__length(&es->_super);
 }
 
-event_listener_t *event_source__first_listener(event_source_t *es)
+event_listener_t *event_source__first_listener(event_source_t const *es)
 {
   assert(es != NULL);
   return (event_listener_t *) s_list__first(&es->_super);

@@ -17,7 +17,7 @@
 /* Function Definitions ----------------------------------------------------- */
 
 
-void event_source__dispatch(event_source_t *es, event__value_t value)
+void event_source__dispatch(event_source_t const *es, event__value_t value)
 {
   assert(es != NULL);
   
