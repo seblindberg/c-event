@@ -12,7 +12,7 @@
 static void *callback_listener;
 static event_t *callback_event;
 
-void helper__event_listener_callback(void *listener, event_t *event)
+static void event_listener_callback(void *listener, event_t *event)
 {
   callback_listener = listener;
   callback_event    = event;
@@ -28,7 +28,7 @@ void test__create(void)
   
   event__ctor(&event, test__create, 42);
   
-  event_listener__ctor(&el, (void *) &object, helper__event_listener_callback);
+  event_listener__ctor(&el, (void *) &object, event_listener_callback);
   
   assert(event_listener__next(&el) == NULL);
 }
@@ -40,7 +40,7 @@ void test__call(void)
   uint_fast8_t     source;
   event_t          event;
   
-  event_listener__ctor(&el, &listener, helper__event_listener_callback);
+  event_listener__ctor(&el, &listener, event_listener_callback);
 
   event__ctor(&event, &source, 42);
 

@@ -9,19 +9,11 @@
 #include <event/event.h>
 #include <event/event_queue.h>
 
-event_t buffer[4];
-
-event_queue_t *helper_setup(void)
-{
-  static event_queue_t event_queue;
-  event_queue__ctor(&event_queue, buffer, sizeof(buffer) >> 1);
-  
-  return &event_queue;
-}
+#include "helper.h"
 
 void test__create(void)
 {
-  event_queue_t *event_queue = helper_setup();
+  event_queue_t *event_queue = helper__event_queue();
   
   assert(event_queue__is_empty(event_queue));
   assert(!event_queue__is_full(event_queue));
@@ -32,7 +24,7 @@ void test__create(void)
 
 void test__put(void)
 {
-  event_queue_t *event_queue = helper_setup();
+  event_queue_t *event_queue = helper__event_queue();
   event_t        event;
   uint_fast8_t   res;
   
@@ -60,7 +52,7 @@ void test__put(void)
 
 void test__take(void)
 {
-  event_queue_t *event_queue = helper_setup();
+  event_queue_t *event_queue = helper__event_queue();
   event_t event;
   event_t dest;
   
@@ -88,7 +80,7 @@ void test__take(void)
 
 void test__grow(void)
 {
-  event_queue_t *event_queue = helper_setup();
+  event_queue_t *event_queue = helper__event_queue();
   event_t event;
   
   event_queue__put(event_queue, &event);
@@ -112,7 +104,7 @@ void test__grow(void)
 
 void test__shrink(void)
 {
-  event_queue_t *event_queue = helper_setup();
+  event_queue_t *event_queue = helper__event_queue();
   event_t event;
   
   event_queue__put(event_queue, &event);

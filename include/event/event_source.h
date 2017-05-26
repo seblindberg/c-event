@@ -4,8 +4,8 @@
 /* Includes ----------------------------------------------------------------- */
 
 #include <compiler.h>
-#include <s_list_item.h>
-#include <s_list.h>
+#include <list/s_list_item.h>
+#include <list/s_list.h>
 #include <event/event.h>
 #include <event/event_listener.h>
 
