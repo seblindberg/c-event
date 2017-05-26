@@ -1,0 +1,6 @@
+[submodule "ext/list"]
+	path = ext/list
+	url = https://github.com/seblindberg/c-list
+[submodule "ext/fifo"]
+	path = ext/fifo
+	url = https://github.com/seblindberg/c-fifo
