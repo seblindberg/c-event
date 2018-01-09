@@ -16,12 +16,10 @@
 
 /* Function Definitions ----------------------------------------------------- */
 
-void event_listener__ctor(event_listener_t *el, void *listener,
-                          event_listener__callback_t callback)
+void
+event_listener__ctor(event_listener_t *el, void *listener,
+                     event_listener__callback_t callback)
 {
-  assert(el != NULL);
-  assert(callback != NULL);
-  
   s_list_item__ctor(&el->_super);
   
   el->listener = listener;

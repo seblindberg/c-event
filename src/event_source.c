@@ -17,10 +17,9 @@
 /* Function Definitions ----------------------------------------------------- */
 
 
-void event_source__dispatch(event_source_t const *es, event__value_t value)
-{
-  assert(es != NULL);
-  
+void
+event_source__dispatch(event_source_t const *es, event__value_t value)
+{  
   event_listener_t *listener = event_source__first_listener(es);
     
   if (listener == NULL) {

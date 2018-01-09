@@ -46,13 +46,16 @@ typedef struct event_listener {
 
 void
   event_listener__ctor(event_listener_t *el, void *listener,
-                       event_listener__callback_t callback);
+                       event_listener__callback_t callback)
+  NONNULL;
 
 static inline event_listener_t *
-  event_listener__next(event_listener_t const *el);
+  event_listener__next(event_listener_t const *el)
+  NONNULL;
 
 static inline void
-  event_listener__call(event_listener_t const *el, event_t *event);
+  event_listener__call(event_listener_t const *el, event_t *event)
+  NONNULL;
 
 
 /* Inline Function Definitions ---------------------------------------------- */
@@ -60,18 +63,18 @@ static inline void
 /* Access the next event listener attatched to the event source.
  */
  
-event_listener_t *event_listener__next(event_listener_t const *el)
+event_listener_t *
+event_listener__next(event_listener_t const *el)
 {
-  assert(el != NULL);
   return (event_listener_t *) s_list_item__next(&el->_super);
 }
 
 /* Call the callback function registered with the event listener.
  */
 
-void event_listener__call(event_listener_t const *el, event_t *event)
+void
+event_listener__call(event_listener_t const *el, event_t *event)
 {
-  assert(el != NULL);
   el->callback(el->listener, event);
 }
 

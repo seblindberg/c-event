@@ -16,18 +16,18 @@
 
 /* Function Definitions ----------------------------------------------------- */
 
-void event_queue__ctor(event_queue_t *eq, event_t *buffer, size_t size)
+void
+event_queue__ctor(event_queue_t *eq, event_t *buffer, size_t size)
 {
   assert((size % sizeof(event_t)) == 0);
 
   fifo__ctor(&eq->_super, buffer, size);
 }
 
-event_queue__result_t event_queue__grow(event_queue_t *eq)
+event_queue__result_t
+event_queue__grow(event_queue_t *eq)
 {
   size_t new_size;
-  
-  assert(eq != NULL);
   
   /* Double the buffer in size. */
   new_size = fifo__size(&eq->_super) << 1;
@@ -36,24 +36,21 @@ event_queue__result_t event_queue__grow(event_queue_t *eq)
   return (event_queue__result_t) fifo__resize(&eq->_super, new_size);
 }
 
-event_queue__result_t event_queue__shrink(event_queue_t *eq)
+event_queue__result_t
+event_queue__shrink(event_queue_t *eq)
 {
   size_t new_size;
-  
-  assert(eq != NULL);
-  
+    
   /* Half the buffer in size. */
   new_size = fifo__size(&eq->_super) >> 1;
   
   return (event_queue__result_t) fifo__resize(&eq->_super, new_size);
 }
 
-event_queue__result_t event_queue__put(event_queue_t *eq, event_t const *event)
+event_queue__result_t
+event_queue__put(event_queue_t *eq, event_t const *event)
 {
   size_t written;
-  
-  assert(eq != NULL);
-  assert(event != NULL);
   
   written = fifo__write(&eq->_super, event, sizeof(event_t));
   
@@ -69,12 +66,10 @@ event_queue__result_t event_queue__put(event_queue_t *eq, event_t const *event)
   return EVENT_QUEUE__OK;
 }
 
-event_queue__result_t event_queue__take(event_queue_t *eq, event_t *dest)
+event_queue__result_t
+event_queue__take(event_queue_t *eq, event_t *dest)
 {
   size_t read;
-  
-  assert(eq != NULL);
-  assert(dest != NULL);
   
   read = fifo__read(&eq->_super, dest, sizeof(event_t));
   
@@ -90,20 +85,20 @@ event_queue__result_t event_queue__take(event_queue_t *eq, event_t *dest)
   return EVENT_QUEUE__OK;
 }
 
-uint8_t event_queue__size(event_queue_t const *eq)
+uint8_t
+event_queue__size(event_queue_t const *eq)
 {
-  assert(eq != NULL);
   return fifo__size(&eq->_super) / sizeof(event_t);
 }
 
-uint8_t event_queue__used(event_queue_t const *eq)
+uint8_t
+event_queue__used(event_queue_t const *eq)
 {
-  assert(eq != NULL);
   return fifo__used(&eq->_super) / sizeof(event_t);
 }
 
-uint8_t event_queue__available(event_queue_t const *eq)
+uint8_t
+event_queue__available(event_queue_t const *eq)
 {
-  assert(eq != NULL);
   return fifo__available(&eq->_super) / sizeof(event_t);
 }

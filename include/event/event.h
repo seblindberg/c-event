@@ -35,18 +35,22 @@ typedef struct {
 /* Public Functions ---------+----------------------------------------------- */
 
 void
-  event__ctor(event_t *event, event__source_t source, event__value_t value);
+  event__ctor(event_t *event, event__source_t source, event__value_t value)
+  NONNULL;
 
 static inline event__source_t
-  event__source(event_t const *event);
+  event__source(event_t const *event)
+  NONNULL;
   
 static inline event__value_t
-  event__value(event_t const *event);
+  event__value(event_t const *event)
+  NONNULL;
 
 
 #ifndef NDEBUG
 void
-  event__inspect(event_t const *event);
+  event__inspect(event_t const *event)
+  NONNULL;
 #else
 #define event__inspect(e)
 #endif /* NDEBUG */
@@ -54,15 +58,15 @@ void
 
 /* Inline Function Definitions ---------------------------------------------- */
 
-event__source_t event__source(event_t const *event)
+event__source_t
+event__source(event_t const *event)
 {
-  assert(event != NULL);
   return event->source;
 }
 
-event__value_t event__value(event_t const *event)
+event__value_t
+event__value(event_t const *event)
 {
-  assert(event != NULL);
   return event->value;
 }
 

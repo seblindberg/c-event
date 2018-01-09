@@ -35,10 +35,12 @@ typedef void * event_debugger_t;
 
 #ifndef NDEBUG
 void
-  event_debugger__ctor(event_debugger_t *ed, const char *label);
+  event_debugger__ctor(event_debugger_t *ed, const char *label)
+  NONNULL;
 
 void
-  event_debugger__handler(event_debugger_t *ed, event_t *event);
+  event_debugger__handler(event_debugger_t *ed, event_t *event)
+  NONNULL;
   
 #else
 #define event_debugger__ctor(ed, label)

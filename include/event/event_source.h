@@ -37,23 +37,27 @@ typedef struct event_source {
 /* Create an event source.
  */
 static inline void
-  event_source__ctor(event_source_t *es);
+  event_source__ctor(event_source_t *es)
+  NONNULL;
 
 /* Get the number of listeners attached to the event source.
  */
 
 static inline size_t
-  event_source__listeners(event_source_t const *es);
+  event_source__listeners(event_source_t const *es)
+  NONNULL;
 
 /* Attatch an event listener to the event source.
  */
  
 static inline void
-  event_source__attach(event_source_t *es, event_listener_t *el);
+  event_source__attach(event_source_t *es, event_listener_t *el)
+  NONNULL;
   
 #ifndef NDEBUG
 static inline void
-  event_source__debug(event_source_t *es, event_debugger_t *ed);
+  event_source__debug(event_source_t *es, event_debugger_t *ed)
+  NONNULL;
 #else
 #define event_source__debug(es, ed)
 #endif /* NDEBUG */
@@ -63,55 +67,58 @@ static inline void
  */
  
 static inline bool_t
-  event_source__detach(event_source_t *es, event_listener_t *el);
+  event_source__detach(event_source_t *es, event_listener_t *el)
+  NONNULL;
 
 static inline event_listener_t *
-  event_source__first_listener(event_source_t const *es);
+  event_source__first_listener(event_source_t const *es)
+  NONNULL;
 
 /* Dispatch an event from this event source.
  */
  
 void
-  event_source__dispatch(event_source_t const *es, event__value_t value);
+  event_source__dispatch(event_source_t const *es, event__value_t value)
+  NONNULL;
 
 
 /* Inline Function Definitions ---------------------------------------------- */
 
-void event_source__ctor(event_source_t *es)
+void
+event_source__ctor(event_source_t *es)
 {
-  assert(es != NULL);
   s_list__ctor(&es->_super);
 }
 
-void event_source__attach(event_source_t *es, event_listener_t *el)
+void
+event_source__attach(event_source_t *es, event_listener_t *el)
 {
-  assert(es != NULL);
-  
   s_list__push(&es->_super, (s_list_item_t *) el);
 }
 
 #ifndef NDEBUG
-void event_source__debug(event_source_t *es, event_debugger_t *ed)
+void
+event_source__debug(event_source_t *es, event_debugger_t *ed)
 {
   event_source__attach(es, (event_listener_t *) ed);
 }
 #endif /* NDEBUG */
 
-bool_t event_source__detach(event_source_t *es, event_listener_t *el)
+bool_t
+event_source__detach(event_source_t *es, event_listener_t *el)
 {
-  assert(es != NULL);
   return s_list__delete(&es->_super, (s_list_item_t *) el);
 }
 
-size_t event_source__listeners(event_source_t const *es)
+size_t
+event_source__listeners(event_source_t const *es)
 {
-  assert(es != NULL);
   return s_list__length(&es->_super);
 }
 
-event_listener_t *event_source__first_listener(event_source_t const *es)
+event_listener_t *
+event_source__first_listener(event_source_t const *es)
 {
-  assert(es != NULL);
   return (event_listener_t *) s_list__first(&es->_super);
 }
 
