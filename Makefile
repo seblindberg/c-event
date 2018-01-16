@@ -1,17 +1,18 @@
-CC = gcc
-MKDIR_P = mkdir -p
+CC      ?= gcc
+MKDIR_P ?= mkdir -p
 
 # Library name
 LIBRARY_NAME = event
 
 # Configure directories
-SRC_DIR  = src
-INC_DIR  = include
-OBJ_DIR  = obj
-LIB_DIR  = lib
-BLD_DIR  = build
-TST_DIR  = tests
-TST_DEPS = helper
+SRC_DIR  ?= src
+INC_DIR  ?= include
+OBJ_DIR  ?= obj
+LIB_DIR  ?= lib
+BLD_DIR  ?= build
+TST_DIR  ?= tests
+TST_DEPS ?= helper
+EXT_DIR  ?= ext
 
 LIBRARY  = $(LIB_DIR)/lib$(LIBRARY_NAME).a
 HEADERS  = $(wildcard $(INC_DIR)/*.h)
@@ -34,7 +35,7 @@ TST_DEPS_OBJ = $(TST_DEPS:%=$(OBJ_DIR)/%.o)
 
 # FLAGS ------------------------------------------------------------------------
 
-CPPFLAGS += -I$(INC_DIR) -Iext/fifo/include -Iext/list/include 
+CPPFLAGS += -I$(INC_DIR) -I$(EXT_DIR)/fifo/include -I$(EXT_DIR)/list/include
 CFLAGS   += -Wall
 LDFLAGS  += -L$(LIB_DIR)
 LDLIBS   += -l$(LIBRARY_NAME) -lfifo -llist
@@ -81,7 +82,7 @@ $(LIBRARY): $(SRC_OBJ)
 # BUILD EXTERNAL LIBRARIES -----------------------------------------------------
 
 $(LIB_DIR)/lib%.a:
-	$(MAKE) -C ext/$(@:$(LIB_DIR)/lib%.a=%) CC=$(CC) LIB_DIR=../../$(LIB_DIR)
+	$(MAKE) -C $(EXT_DIR)/$(@:$(LIB_DIR)/lib%.a=%) CC=$(CC) LIB_DIR=../../$(LIB_DIR)
 	
 	
 # BUILD TESTS ------------------------------------------------------------------

@@ -17,7 +17,7 @@ typedef uint_fast8_t bool_t;
 /* Macros ---------------------------------------+---------+----------------- */
 
 #define ENTER_CRITICAL_REGION()
-#define LEAVE_CRITICAL_REGION()                   
+#define LEAVE_CRITICAL_REGION()
 
 #define WRITE_CONST(field, type, value)                     \
   *((type *) &(field)) = value
@@ -29,6 +29,9 @@ typedef uint_fast8_t bool_t;
   __attribute__((__deprecated__))
 #define NONNULL                                   __attribute__((__nonnull__))
 #define NONNULL_ARGS(...)                                   \
-  __attribute__((__nonnull__ (##__VA_ARGS__)))
+  __attribute__((__nonnull__ (__VA_ARGS__)))
+#define PURE                                      __attribute__((__pure__))
+#define CLEANUP(fn)                                         \
+  __attribute__((__cleanup__(fn)))
 
 #endif /* COMPILER_H */
