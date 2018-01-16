@@ -42,14 +42,12 @@ static inline void
 
 /* Get the number of listeners attached to the event source.
  */
-
 static inline size_t
-  event_source__listeners(event_source_t const *es)
+  event_source__num_listeners(event_source_t const *es)
   NONNULL;
 
 /* Attatch an event listener to the event source.
  */
- 
 static inline void
   event_source__attach(event_source_t *es, event_listener_t *el)
   NONNULL;
@@ -65,7 +63,6 @@ static inline void
 /* Detatch an event listener from the event source. The operation will fail
  * (return false) if the listener is not connected to this source.
  */
- 
 static inline bool_t
   event_source__detach(event_source_t *es, event_listener_t *el)
   NONNULL;
@@ -76,7 +73,6 @@ static inline event_listener_t *
 
 /* Dispatch an event from this event source.
  */
- 
 void
   event_source__dispatch(event_source_t const *es, event__value_t value)
   NONNULL;
@@ -111,7 +107,7 @@ event_source__detach(event_source_t *es, event_listener_t *el)
 }
 
 size_t
-event_source__listeners(event_source_t const *es)
+event_source__num_listeners(event_source_t const *es)
 {
   return s_list__length(&es->_super);
 }
