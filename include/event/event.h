@@ -49,8 +49,7 @@ static inline event__value_t
 
 #ifndef NDEBUG
 void
-  event__inspect(event_t const *event)
-  NONNULL;
+  event__inspect(event_t const *event);
 #else
 #define event__inspect(e)
 #endif /* NDEBUG */
